@@ -19,7 +19,7 @@ sbit c3 = P3^2;
 sbit motp1 = P3^3;
 sbit motp2 = P3^4;
 
-//Declaring LED connections
+//Declaring LCD connections
 sbit rs = P3^5;
 sbit rw = P3^6;
 sbit en = P3^7;
@@ -128,7 +128,7 @@ char keypad()
 			lcddat('*');
 			delay(100);
 			x = 1;
-			return '1';
+			return '1'; //it will store the one in the array
 				
 		}
 		if(c2 == 0)
@@ -176,6 +176,7 @@ char keypad()
 		}
 		
 		r1 = 1; r2 = 1; r3 = 0; r4 = 1;
+		
 		if(c1 == 0)
 		{
 			lcddat('*');
@@ -216,7 +217,7 @@ char keypad()
 			lcddat('*');
 			delay(100);
 			x = 1;
-			return '*';
+			return '0';
 				
 		}
 		
