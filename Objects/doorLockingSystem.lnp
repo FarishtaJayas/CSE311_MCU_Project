@@ -1,0 +1,3 @@
+".\Objects\doorLockingSystem.obj" 
+TO ".\Objects\doorLockingSystem" 
+PRINT(".\Listings\doorLockingSystem.m51") CODE( 0X0000-0X0FFF )

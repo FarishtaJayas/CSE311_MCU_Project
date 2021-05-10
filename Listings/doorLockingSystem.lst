@@ -1,0 +1,305 @@
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/11/2021 01:19:56 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DOORLOCKINGSYSTEM
+OBJECT MODULE PLACED IN .\Objects\doorLockingSystem.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE doorLockingSystem.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\
+                    -Listings\doorLockingSystem.lst) TABS(2) OBJECT(.\Objects\doorLockingSystem.obj)
+
+line level    source
+
+   1          #include<reg51.h>
+   2          
+   3          //Setting up the keyboard
+   4          
+   5          //Setting up the keypad pins 4 rows
+   6          sbit r1 = P2^0;
+   7          sbit r2 = P2^1;
+   8          sbit r3 = P2^2;
+   9          sbit r4 = P2^4;
+  10          
+  11          //Setting up the keypad columns
+  12          sbit c1 = P3^0;
+  13          sbit c2 = P3^1;
+  14          sbit c3 = P3^2;
+  15          
+  16          //Keyboard Setup complete
+  17          
+  18          //Declaring the motor pins
+  19          sbit motp1 = P3^3;
+  20          sbit motp2 = P3^4;
+  21          
+  22          //Declaring LED connections
+  23          sbit rs = P3^5;
+  24          sbit rw = P3^6;
+  25          sbit en = P3^7;
+  26          
+  27          //declaring lcd functions
+  28          void lcdcmd(unsigned char);
+  29          void lcddata(unsigned char);
+  30          
+  31          //declaring string display function
+  32          void lcddis(unsigned char *q);
+  33          
+  34          //declaring keypad function
+  35          char keypad();
+  36          
+  37          //password checking fucntion
+  38          void check();
+  39          
+  40          //delay function
+  41          void delay(unsigned int);
+  42          unsigned char pin[] = {"12345"}; // Set Password
+  43          unsigned char Epin[5];  //Entered Password 
+  44          
+  45          void main()
+  46          {
+  47   1          lcdcmd(0x0F); //LCD on command
+  48   1          lcdcmd(0x38); //2 lines of the matrix
+  49   1          lcdcmd(0x01);
+  50   1        
+  51   1          while(1)
+  52   1          {
+  53   2            unsigned int i = 0;
+  54   2            lcdcmd(0x80);//first column of the first row of the lcd 
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/11/2021 01:19:56 PAGE 2   
+
+  55   2            lcddis("ENTER PIN..");
+  56   2            delay(1000);
+  57   2            lcdcmd(0xC0);
+  58   2            while(pin[i] != '\0')
+  59   2            {
+  60   3              Epin[i] =  keypad();
+  61   3              delay(1000);
+  62   3              i++;
+  63   3            }
+  64   2            check();
+  65   2          }
+  66   1          
+  67   1      }
+  68          
+  69          
+  70          //Delay Function
+  71          void delay(unsigned int j) {
+  72   1        int a, b;
+  73   1        for(a = 0; a<j; a++) 
+  74   1        {
+  75   2          for(b = 0; b<10; b++);
+  76   2        }
+  77   1      }
+  78          
+  79          //LCD Command Function
+  80          void lcdcmd(unsigned char A)
+  81          {
+  82   1        P1 = A;
+  83   1        rs = 0;
+  84   1        rw = 0;
+  85   1        en = 1;
+  86   1        delay(1000);
+  87   1        en = 0;
+  88   1      }
+  89          
+  90          //LCD Data Function
+  91          void lcddat(unsigned char i)
+  92          {
+  93   1        P1 = i;
+  94   1        rs = 1;
+  95   1        rw = 0;
+  96   1        en = 1;
+  97   1        delay(1000);
+  98   1        en = 0;
+  99   1        
+ 100   1      
+ 101   1      }
+ 102          //Display Function
+ 103          void lcddis(unsigned char * q)
+ 104          {
+ 105   1        int k;
+ 106   1        
+ 107   1        //loop to display character by character on the lcd screen
+ 108   1        for(k = 0; q[k] != '\0'; k++)
+ 109   1        {
+ 110   2          lcddat(q[k]); 
+ 111   2        }  
+ 112   1        delay(10000);
+ 113   1      }
+ 114          
+ 115          //Keypad function
+ 116          char keypad()
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/11/2021 01:19:56 PAGE 3   
+
+ 117          {
+ 118   1        int x = 0;
+ 119   1        while(x == 0)
+ 120   1        {
+ 121   2          r1 = 0;
+ 122   2          r2 = 1;
+ 123   2          r3 = 1;
+ 124   2          r4 = 1;
+ 125   2          
+ 126   2          if(c1 == 0)
+ 127   2          {
+ 128   3            lcddat('*');
+ 129   3            delay(100);
+ 130   3            x = 1;
+ 131   3            return '1';
+ 132   3              
+ 133   3          }
+ 134   2          if(c2 == 0)
+ 135   2          {
+ 136   3            lcddat('*');
+ 137   3            delay(100);
+ 138   3            x = 1;
+ 139   3            return '2';
+ 140   3              
+ 141   3          }
+ 142   2          if(c3 == 0)
+ 143   2          {
+ 144   3            lcddat('*');
+ 145   3            delay(100);
+ 146   3            x = 1;
+ 147   3            return '3';
+ 148   3              
+ 149   3          }
+ 150   2          
+ 151   2          r1 = 1; r2 = 0; r3 = 1; r4 = 1;
+ 152   2        
+ 153   2          if(c1 == 0)
+ 154   2          {
+ 155   3            lcddat('*');
+ 156   3            delay(100);
+ 157   3            x = 1;
+ 158   3            return '4';
+ 159   3              
+ 160   3          }
+ 161   2          if(c2 == 0)
+ 162   2          {
+ 163   3            lcddat('*');
+ 164   3            delay(100);
+ 165   3            x = 1;
+ 166   3            return '5';
+ 167   3              
+ 168   3          }
+ 169   2          if(c3 == 0)
+ 170   2          {
+ 171   3            lcddat('*');
+ 172   3            delay(100);
+ 173   3            x = 1;
+ 174   3            return '6';
+ 175   3              
+ 176   3          }
+ 177   2          
+ 178   2          r1 = 1; r2 = 1; r3 = 0; r4 = 1;
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/11/2021 01:19:56 PAGE 4   
+
+ 179   2          if(c1 == 0)
+ 180   2          {
+ 181   3            lcddat('*');
+ 182   3            delay(100);
+ 183   3            x = 1;
+ 184   3            return '7';
+ 185   3              
+ 186   3          }
+ 187   2          if(c2 == 0)
+ 188   2          {
+ 189   3            lcddat('*');
+ 190   3            delay(100);
+ 191   3            x = 1;
+ 192   3            return '8';
+ 193   3              
+ 194   3          }
+ 195   2          
+ 196   2          if(c3 == 0)
+ 197   2          {
+ 198   3            lcddat('*');
+ 199   3            delay(100);
+ 200   3            x = 1;
+ 201   3            return '9';
+ 202   3              
+ 203   3          }
+ 204   2          r1 = 1; r2 = 1; r3 = 1; r4 = 0; 
+ 205   2          if(c1 == 0)
+ 206   2          {
+ 207   3            lcddat('*');
+ 208   3            delay(100);
+ 209   3            x = 1;
+ 210   3            return '*';
+ 211   3              
+ 212   3          }
+ 213   2          
+ 214   2          if(c2 == 0)
+ 215   2          {
+ 216   3            lcddat('*');
+ 217   3            delay(100);
+ 218   3            x = 1;
+ 219   3            return '*';
+ 220   3              
+ 221   3          }
+ 222   2          
+ 223   2          if(c3 == 0)
+ 224   2          {
+ 225   3            lcddat('*');
+ 226   3            delay(100);
+ 227   3            x = 1;
+ 228   3            return '#';
+ 229   3              
+ 230   3          }
+ 231   2            
+ 232   2        }
+ 233   1      } 
+ 234          
+ 235          //Password Check Function
+ 236          
+ 237          void check()
+ 238          {
+ 239   1        if(pin[0] == Epin[0] && pin[1] == Epin[1] && pin[2] == Epin[2] && pin[3] == Epin[3] && pin[4] == Epin[4])
+             - 
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/11/2021 01:19:56 PAGE 5   
+
+ 240   1        {
+ 241   2          delay(1000);
+ 242   2          lcdcmd(0x01);  //clear screen command
+ 243   2          lcdcmd(0x081); //displaying row 1, second column of the lcd
+ 244   2          lcddis("PIN CORRECT...");
+ 245   2          delay(1000);
+ 246   2          //open door mechanism with the motor
+ 247   2          motp1 = 1;
+ 248   2          motp2 = 0;
+ 249   2          lcdcmd(0xC1); //second row of the lcd
+ 250   2          lcddis("LOCK OPENED..");
+ 251   2          delay(1000000);
+ 252   2          motp1 = 1;
+ 253   2          motp2 = 0;
+ 254   2          lcdcmd(0x01); //clear screen command
+ 255   2        }
+ 256   1        else 
+ 257   1        {
+ 258   2          lcdcmd(0x01); //clear screen
+ 259   2          lcdcmd(0x80); //The first row of lCD
+ 260   2          lcddis("WRONG PIN..");
+ 261   2          delay(1000000);
+ 262   2          lcdcmd(0x01); // clear screen
+ 263   2        }
+ 264   1          
+ 265   1        }
+ 266          
+ 267          
+ 268          
+ 269          
+ 270          
+ 271          
+*** WARNING C291 IN LINE 233 OF doorLockingSystem.c: not every exit path returns a value
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    487    ----
+   CONSTANT SIZE    =     53    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     11       7
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
