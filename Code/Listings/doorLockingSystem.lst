@@ -1,10 +1,10 @@
-C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 02:46:41 PAGE 1   
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 13:14:35 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE DOORLOCKINGSYSTEM
 OBJECT MODULE PLACED IN .\Objects\doorLockingSystem.obj
-COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE doorLockingSystem.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND PRINT(.\
-                    -Listings\doorLockingSystem.lst) TABS(2) OBJECT(.\Objects\doorLockingSystem.obj)
+COMPILER INVOKED BY: H:\Softwares\Keil uVision 5\C51\BIN\C51.EXE doorLockingSystem.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJE
+                    -CTEXTEND PRINT(.\Listings\doorLockingSystem.lst) TABS(2) OBJECT(.\Objects\doorLockingSystem.obj)
 
 line level    source
 
@@ -62,7 +62,7 @@ line level    source
   52          
   53          //delay function
   54          void delay(unsigned int);
-C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 02:46:41 PAGE 2   
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 13:14:35 PAGE 2   
 
   55          unsigned char pin[] = {"12345"}; // Set Password
   56          unsigned char Epin[5];  //Entered Password 
@@ -126,7 +126,7 @@ line level    source
  114   1        rw = 0;
  115   1        en = 1;
  116   1        delay(1000);
-C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 02:46:41 PAGE 3   
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 13:14:35 PAGE 3   
 
  117   1        en = 0;
  118   1        
@@ -190,7 +190,7 @@ line level    source
  176   3            x = 1;
  177   3            return '4';
  178   3              
-C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 02:46:41 PAGE 4   
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 13:14:35 PAGE 4   
 
  179   3          }
  180   2          if(c2 == 0)
@@ -254,7 +254,7 @@ line level    source
  238   3            x = 1;
  239   3            return '0';
  240   3              
-C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 02:46:41 PAGE 5   
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 13:14:35 PAGE 5   
 
  241   3          }
  242   2          
@@ -281,16 +281,16 @@ line level    source
  262   2          delay(1000);
  263   2          lcdcmd(0x01);  //clear screen command
  264   2          lcdcmd(0x081); //displaying row 1, second column of the lcd
- 265   2          lcddis("PIN CORRECT...");
- 266   2          
- 267   2          delay(1000);
- 268   2          //open door mechanism with the motor
- 269   2          motp1 = 1;
- 270   2          motp2 = 0;
- 271   2          
- 272   2          lcdcmd(0xC1); //second row of the lcd
- 273   2          gled1 = 1;
- 274   2          gled2 = 0;
+ 265   2          gled1 = 1;
+ 266   2          gled2 = 0;
+ 267   2          lcddis("PIN CORRECT...");
+ 268   2          
+ 269   2          delay(1000);
+ 270   2          //open door mechanism with the motor
+ 271   2          motp1 = 1;
+ 272   2          motp2 = 0;
+ 273   2          
+ 274   2          lcdcmd(0xC1); //second row of the lcd
  275   2          lcddis("LOCK OPENED..");
  276   2          
  277   2          delay(1000000);
@@ -309,26 +309,27 @@ line level    source
  290   2          buz2 = 0;
  291   2          lcddis("WRONG PIN..");
  292   2          
- 293   2          
- 294   2          delay(1000000);
- 295   2          lcdcmd(0x01); // clear screen
- 296   2          
- 297   2        }
- 298   1          
- 299   1        }
- 300          
+ 293   2          buz1 = 0;
+ 294   2          buz2 = 1;
+ 295   2          delay(1000000);
+ 296   2          lcdcmd(0x01); // clear screen
+ 297   2          
+ 298   2        }
+ 299   1          
+ 300   1        }
  301          
-C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 02:46:41 PAGE 6   
+C51 COMPILER V9.60.0.0   DOORLOCKINGSYSTEM                                                 05/14/2021 13:14:35 PAGE 6   
 
  302          
  303          
  304          
  305          
+ 306          
 *** WARNING C291 IN LINE 253 OF doorLockingSystem.c: not every exit path returns a value
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =    511    ----
+   CODE SIZE        =    515    ----
    CONSTANT SIZE    =     53    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----

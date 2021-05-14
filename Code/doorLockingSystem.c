@@ -262,6 +262,8 @@ void check()
 		delay(1000);
 		lcdcmd(0x01);  //clear screen command
 		lcdcmd(0x081); //displaying row 1, second column of the lcd
+		gled1 = 1;
+		gled2 = 0;
 		lcddis("PIN CORRECT...");
 		
 		delay(1000);
@@ -270,8 +272,6 @@ void check()
 		motp2 = 0;
 		
 		lcdcmd(0xC1); //second row of the lcd
-		gled1 = 1;
-		gled2 = 0;
 		lcddis("LOCK OPENED..");
 		
 		delay(1000000);
@@ -290,7 +290,8 @@ void check()
 		buz2 = 0;
 		lcddis("WRONG PIN..");
 		
-		
+		buz1 = 0;
+		buz2 = 1;
 		delay(1000000);
 		lcdcmd(0x01); // clear screen
 		
