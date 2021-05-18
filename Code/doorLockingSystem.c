@@ -24,6 +24,15 @@ sbit rs = P3^5;
 sbit rw = P3^6;
 sbit en = P3^7;
 
+//Declaring Red LED
+sbit rled1 = P2^6;
+sbit rled2 = P2^7;
+
+//Declaring Green LED
+sbit gled1 = P2^4;
+sbit gled2 = P2^5;
+
+
 //declaring lcd functions
 void lcdcmd(unsigned char);
 void lcddata(unsigned char);
@@ -44,6 +53,7 @@ unsigned char Epin[5];  //Entered Password
 
 void main()
 {
+		
 		lcdcmd(0x0F); //LCD on command
 		lcdcmd(0x38); //2 lines of the matrix
 		lcdcmd(0x01);
@@ -52,6 +62,13 @@ void main()
 		{
 			unsigned int i = 0;
 			lcdcmd(0x80);//first column of the first row of the lcd 
+			gled1 = 0;
+		  gled2 = 1;
+			
+			rled1 = 0;
+		  rled2 = 1;
+			
+			
 			lcddis("ENTER PIN..");
 			delay(1000);
 			lcdcmd(0xC0);
@@ -239,16 +256,22 @@ void check()
 {
 	if(pin[0] == Epin[0] && pin[1] == Epin[1] && pin[2] == Epin[2] && pin[3] == Epin[3] && pin[4] == Epin[4]) 
 	{
+		
 		delay(1000);
 		lcdcmd(0x01);  //clear screen command
 		lcdcmd(0x081); //displaying row 1, second column of the lcd
 		lcddis("PIN CORRECT...");
+		
 		delay(1000);
 		//open door mechanism with the motor
 		motp1 = 1;
 		motp2 = 0;
+		
 		lcdcmd(0xC1); //second row of the lcd
+		gled1 = 1;
+		gled2 = 0;
 		lcddis("LOCK OPENED..");
+		
 		delay(1000000);
 		motp1 = 1;
 		motp2 = 0;
@@ -258,9 +281,15 @@ void check()
 	{
 		lcdcmd(0x01); //clear screen
 		lcdcmd(0x80); //The first row of lCD
+		rled1 = 1;
+		rled2 = 0;
+	
 		lcddis("WRONG PIN..");
+		
+		
 		delay(1000000);
 		lcdcmd(0x01); // clear screen
+		
 	}
 		
 	}
