@@ -32,6 +32,13 @@ sbit rled2 = P2^7;
 sbit gled1 = P2^4;
 sbit gled2 = P2^5;
 
+<<<<<<< HEAD
+=======
+//Declaring Buzzer
+sbit buz1 = P0^0;
+sbit buz2 = P0^5;
+
+>>>>>>> 72c45bd7e8179a788c55ea3554d5ba4e6d5385fc
 
 //declaring lcd functions
 void lcdcmd(unsigned char);
@@ -67,8 +74,11 @@ void main()
 			
 			rled1 = 0;
 		  rled2 = 1;
+<<<<<<< HEAD
 			
 			
+=======
+>>>>>>> 72c45bd7e8179a788c55ea3554d5ba4e6d5385fc
 			lcddis("ENTER PIN..");
 			delay(1000);
 			lcdcmd(0xC0);
@@ -260,6 +270,8 @@ void check()
 		delay(1000);
 		lcdcmd(0x01);  //clear screen command
 		lcdcmd(0x081); //displaying row 1, second column of the lcd
+		gled1 = 1;
+		gled2 = 0;
 		lcddis("PIN CORRECT...");
 		
 		delay(1000);
@@ -283,10 +295,20 @@ void check()
 		lcdcmd(0x80); //The first row of lCD
 		rled1 = 1;
 		rled2 = 0;
+<<<<<<< HEAD
 	
 		lcddis("WRONG PIN..");
 		
 		
+=======
+		
+		buz1 = 1;
+		buz2 = 0;
+		lcddis("WRONG PIN..");
+		
+		buz1 = 0;
+		buz2 = 1;
+>>>>>>> 72c45bd7e8179a788c55ea3554d5ba4e6d5385fc
 		delay(1000000);
 		lcdcmd(0x01); // clear screen
 		
