@@ -36,35 +36,35 @@ Once the door is opened using a motor on entering the correct password, the conc
 will be allowed access to the secured area, and the door will be closed once again using the same
 motor. Again, if another person arrives, it will ask to enter the password. If the password is
 wrong, the door will remain closed, denying access to the person.Pin Configuration:\
-### LCD Display\
+### LCD Display
 D0 - Port1, Pin 0\
 D1 - Port1, Pin 1\
-D2 - Port1, Pin 2
-D3 - Port1, Pin 3
-D4 - Port1, Pin 4
-D5 - Port1, Pin 5
-D6 - Port1, Pin 6
-D7 - Port1, Pin 7
-RS - Port 3, Pin 5
-RW - Port 3, Pin 6
-E - Por 3, Pin 7
+D2 - Port1, Pin 2\
+D3 - Port1, Pin 3\
+D4 - Port1, Pin 4\
+D5 - Port1, Pin 5\
+D6 - Port1, Pin 6\
+D7 - Port1, Pin 7\
+RS - Port 3, Pin 5\
+RW - Port 3, Pin 6\
+E - Por 3, Pin 7\
 ### Motor
-1 - Port 3, Pin 3
-2 - Port 3, Pin 4
+1 - Port 3, Pin 3\
+2 - Port 3, Pin 4\
 ### Red LED
-1 - Port 2, Pin 5
-2 - Port 2, Pin 4
+1 - Port 2, Pin 5\
+2 - Port 2, Pin 4\
 ### Green LED
-1 - Port 2, Pin 7
-2 - Port 2, Pin 6
+1 - Port 2, Pin 7\
+2 - Port 2, Pin 6\
 ### Keypad
-A - Port 2, Pin 0
-B - Port 2, Pin 1
-C - Port 2, Pin 2
-D - Port 2, Pin 3
-1 - Port 3, Pin 0
-2 - Port 3, Pin 1
-3 - Port 3, Pin 2
+A - Port 2, Pin 0\
+B - Port 2, Pin 1\
+C - Port 2, Pin 2\
+D - Port 2, Pin 3\
+1 - Port 3, Pin 0\
+2 - Port 3, Pin 1\
+3 - Port 3, Pin 2\
 
 ## Discussion
 
