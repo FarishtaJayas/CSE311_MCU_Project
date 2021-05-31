@@ -6,8 +6,8 @@ If you are planning on taking CSE331 under RSF at NSU. You have full permission 
 Please overlook the name of the files. We were kids. 
 
 Project Members:
-Farishta Jayas
-Maraj Hossain
+Farishta Jayas\
+Maraj Hossain\
 Syed Maaher Hossain
 
 ## Objective
