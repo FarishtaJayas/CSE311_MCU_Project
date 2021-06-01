@@ -35,7 +35,7 @@ depending on whether the correct input was entered or not.
 Once the door is opened using a motor on entering the correct password, the concerned person
 will be allowed access to the secured area, and the door will be closed once again using the same
 motor. Again, if another person arrives, it will ask to enter the password. If the password is
-wrong, the door will remain closed, denying access to the person.Pin Configuration:\
+wrong, the door will remain closed, denying access to the person.Pin Configuration:
 ### LCD Display
 D0 - Port1, Pin 0\
 D1 - Port1, Pin 1\
