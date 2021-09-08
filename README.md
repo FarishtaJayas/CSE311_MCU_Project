@@ -3,7 +3,7 @@
 Title: Password based door lock system using 8051/PIC microcontroller
 
 If you are planning on taking CSE331 under RSF at NSU. You have full permission to copy this project.
-Please overlook the name of the files. We were kids. 
+Please overlook the names of the files. We were kids. 
 
 Project Members:\
 Farishta Jayas\
